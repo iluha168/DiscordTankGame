@@ -25,7 +25,7 @@ export const cmd: CMD = {
 	},
 
 	[ApplicationCommandTypes.ChatInput]: async (intr)=>{
-        const errMsg = await intr.db.moveTank(intr.interaction.user.id, intr.options.left as number, intr.options.up as number)
+        const errMsg = await intr.db.moveTank(intr.interaction.user.id, intr.options.left as number, intr.options.down as number)
         await intr.reply(
             errMsg ?
             msgFail(errMsg):

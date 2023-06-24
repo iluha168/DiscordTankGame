@@ -33,12 +33,6 @@ async function CALL(sql: string, args: unknown[]){
     return await query(sql, args) as Record<string, string>[][]
 }
 
-async function CALLwithErrorCode(sql: string, args: unknown[]): Promise<string>{
-    const [res] = await CALL(sql, args)
-    const msg = procedureErrorCodes[Object.keys(res)[0]]
-    return msg
-}
-
 const procedureErrorCodes: Record<string, string> = {
     0: "",
     1: "The board is locked.",
@@ -56,6 +50,12 @@ const procedureErrorCodes: Record<string, string> = {
    13: "The target is not in the range.",
    14: "The target is not in the game.",
    15: "The board is not locked.",
+}
+
+async function CALLwithErrorCode(sql: string, args: unknown[]): Promise<string>{
+    const [[res]] = await CALL(sql, args)
+    const msg = procedureErrorCodes[Object.keys(res)[0]]
+    return msg
 }
 
 export interface DBTankInfo {

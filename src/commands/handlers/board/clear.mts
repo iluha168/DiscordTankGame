@@ -20,7 +20,7 @@ export const cmd: CMD = {
         await intr.defer()
         const roleIDs = await intr.db.roleStatuses as Record<string,bigint|null>
         if(roleIDs){
-            if(intr.options.removewin)
+            if(!intr.options.removewin)
                 roleIDs.rolewin = null
             //remove roles from users
             await intr.db.allTanks(async ({userID}) => {

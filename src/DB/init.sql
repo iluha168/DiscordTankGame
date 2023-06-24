@@ -122,7 +122,7 @@ this_proc:BEGIN
 		SELECT 15;
         LEAVE this_proc;
     END IF;
-    SELECT X+dX,Y+dY,CAST(AP AS SIGNED)-1,HP INTO nx,ny,nap,health FROM tank WHERE guildID = gID AND userID = uID;
+    SELECT ABS(CAST(X AS SIGNED)+dX),ABS(CAST(Y AS SIGNED)+dY),CAST(AP AS SIGNED)-1,HP INTO nx,ny,nap,health FROM tank WHERE guildID = gID AND userID = uID;
     IF nx IS NULL OR ny IS NULL OR nap IS NULL OR health IS NULL THEN
 		SELECT 4;
         LEAVE this_proc;
@@ -143,7 +143,7 @@ this_proc:BEGIN
 		SELECT 8;
 		LEAVE this_proc;
     END IF;
-    UPDATE tank SET X=nx, Y=ny, AP=nap;
+    UPDATE tank SET X=nx, Y=ny, AP=nap WHERE guildId=gID AND userID=uID;
     SELECT 0;
 END$$
 
