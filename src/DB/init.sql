@@ -109,6 +109,10 @@ this_proc:BEGIN
     DECLARE bw,bh TINYINT UNSIGNED;
     DECLARE nx,ny SMALLINT SIGNED DEFAULT NULL;
     DECLARE nap,health INT UNSIGNED DEFAULT 0;
+    IF ABS(dX)>3 OR ABS(dY)>3 THEN
+		SELECT 13;
+        LEAVE this_proc;
+    END IF;
     SELECT locked,w,h INTO islocked,bw,bh FROM board WHERE guildID = gID;
 	IF islocked IS NULL THEN
 		SELECT 10;
@@ -246,7 +250,7 @@ this_proc:BEGIN
 		SELECT 12;
         LEAVE this_proc;
     END IF;
-    IF dX>3 OR dY>3 THEN
+    IF dX>4 OR dY>4 THEN
 		SELECT 13;
         LEAVE this_proc;
     END IF;

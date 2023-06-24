@@ -8,15 +8,15 @@ export const cmd: CMD = {
 		description: "Move your tank. Takes 1 AP!",
 		type: ApplicationCommandOptionTypes.SubCommand,
         options: [{
-            name: "x",
-            description: "relative X change: -x is left, +x is right",
+            name: "left",
+            description: "How many squares to go to the left? Negative numbers allowed!",
             type: ApplicationCommandOptionTypes.Integer,
             minValue: -3,
             maxValue: +3,
             required: true,
         },{
-            name: "y",
-            description: "relative Y change: -y is up, +y is down",
+            name: "down",
+            description: "How many squares to go down? Negative numbers allowed!",
             type: ApplicationCommandOptionTypes.Integer,
             minValue: -3,
             maxValue: +3,
@@ -25,7 +25,7 @@ export const cmd: CMD = {
 	},
 
 	[ApplicationCommandTypes.ChatInput]: async (intr)=>{
-        const errMsg = await intr.db.moveTank(intr.interaction.user.id, intr.options.x as number, intr.options.y as number)
+        const errMsg = await intr.db.moveTank(intr.interaction.user.id, intr.options.left as number, intr.options.up as number)
         await intr.reply(
             errMsg ?
             msgFail(errMsg):
