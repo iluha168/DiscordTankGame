@@ -14,7 +14,7 @@ export const cmd: CMD = {
 			{
 				type: ApplicationCommandOptionTypes.Boolean,
 				name: "locked",
-				description: "Can players join/leave?",
+				description: "Did the game begin?",
 			},{
 				type: ApplicationCommandOptionTypes.Integer,
 				name: "maxap",

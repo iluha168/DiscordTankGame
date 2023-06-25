@@ -120,7 +120,7 @@ export class DBBoard {
     }
 
     async allTanks(callback: (tank: DBTankInfo)=>Promise<unknown>){
-        const tanks = await query('SELECT * FROM tank WHERE guildID=?', [this.guildID]) as DBTankInfo[]
+        const tanks = await query('SELECT * FROM tank WHERE guildID=? ORDER BY HP ASC', [this.guildID]) as DBTankInfo[]
         for(const tank of tanks) await callback(tank)
     }
 
