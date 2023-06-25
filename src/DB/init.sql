@@ -197,7 +197,7 @@ this_proc:BEGIN
 	UPDATE tank SET HP=HP-1 WHERE guildID = gID AND userID = targetID;
     SELECT 0;
     IF (SELECT HP FROM tank WHERE guildID = gID AND userID = targetID) = 0 THEN
-		IF (SELECT COUNT(*) FROM tank WHERE guildID = gID AND userID = targetID AND HP>0) <= 1 THEN
+		IF (SELECT COUNT(*) FROM tank WHERE guildID = gID AND HP>0) <= 1 THEN
 			SELECT 2;
         ELSE
 			SELECT 1;
